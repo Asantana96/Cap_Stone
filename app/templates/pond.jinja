@@ -33,7 +33,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
                     <a class="nav-link" href="{{ url_for('main.fish_tank') }}">FishTank</a>
                     <a class="nav-link" href="{{ url_for('main.pond') }}">Pond</a>
-                    <a class="nav-link" href="{{ url_for('auth.sign_in') }}">Sign-In</a>
+                    <a class="nav-link" href="{{ url_for('auth.sign_in') }}">Sign~In</a>
                     <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
                 </div>
             </div>
@@ -41,14 +41,13 @@
     </nav>
     <div class="pond_container">
         <h1 class="pond_text">WELCOME TO THE POND</h1>
-        <h2 class="p_text">Before you start your study session cast your reel. This will start your study timer and
-            once you get a bit you will be notified!</h2>
+        <h2 class="p_text">Before you start your study session, cast your line. This will start your study timer, and once you catch a fish, it will be put in your fish tank!</h2>
      
         
     {% block content %}
   <div id="timer-container">
     <div id="timer-display">25:00</div>
-    <button id="start-button">Start</button>
+    <button id="start-button">Cast Line</button>
     <button id="reset-button">Reset</button>
   </div>
 

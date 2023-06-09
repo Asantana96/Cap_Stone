@@ -32,13 +32,35 @@
                     <a class="nav-link active" aria-current="page" href="{{url_for('main.home')}}">Home</a>
                     <a class="nav-link" href="{{url_for('main.fish_tank')}}">FishTank</a>
                     <a class="nav-link" href="{{url_for('main.pond')}}">Pond</a>
-                    <a class="nav-link" href="{{url_for('auth.sign_in')}}">Sign-In</a>
+                    <a class="nav-link" href="{{url_for('auth.sign_in')}}">Sign~In</a>
                     <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
                 </div>
             </div>
         </div>
     </nav>
-    <h1>add text </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Species</th>
+      <th>Size</th>
+      <th>Color</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fish in caught_fish %}
+      <tr>
+        <td>{{ fish.species }}</td>
+        <td>{{ fish.size }}</td>
+        <td>{{ fish.color }}</td>
+        <td>{{ fish.weight }}</td>
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 </body>
 
 </html>

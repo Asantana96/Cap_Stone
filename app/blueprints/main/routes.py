@@ -4,6 +4,8 @@ from . import bp
 from app import db
 from .timer import PomodoroTimer, timer_bp
 import random
+from flask_login import current_user
+from app.models import Fish
 
 fish_library = {
     '1': {'name': 'Rainbow Trout', 'color': 'Rainbow', 'type': 'Freshwater'},
@@ -20,15 +22,17 @@ fish_library = {
 
 @bp.route('/fish', methods=['GET'])
 def get_fish_info():
-    fish_id = random.choice(list(fish_library.keys()))  # Randomly select a fish ID
-    fish_info = fish_library.get(fish_id)  # Get the fish information from the library
+    fish_id = random.choice(list(fish_library.keys()))  
+    fish_info = fish_library.get(fish_id)  
 
     if fish_info:
+        if current_user.is_authenticated:
+            fish = Fish(name=fish_info['name'], color=fish_info['color'], type=fish_info['type'], user_id=current_user.id)
+            db.session.add(fish)
+            db.session.commit()
         return jsonify(fish_info)
     else:
         return jsonify({'error': 'Fish not found'})
-
-bp.register_blueprint(timer_bp)
 
 @bp.route('/')
 def home():
@@ -40,13 +44,14 @@ def pond():
 
 @bp.route('/fish_tank')
 def fish_tank():
-    return render_template('fish_tank.jinja')
+    caught_fish = Fish.query.all()
+    return render_template('fish_tank.jinja', caught_fish=caught_fish)
+
 
 @bp.route('/api/fish', methods=['GET'])
 def get_random_fish():
-    fish_id = random.choice(list(fish_library.keys()))  # Randomly select a fish ID
-    fish_info = fish_library.get(fish_id)  # Get the fish information from the library
-
+    fish_id = random.choice(list(fish_library.keys()))  
+    fish_info = fish_library.get(fish_id)  
     if fish_info:
         return jsonify(fish_info)
     else:
