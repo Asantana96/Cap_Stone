@@ -253,6 +253,23 @@ a.navbar-brand {
     box-shadow: 2px 2px 5px black;  
   }
   /* ---------------------------------pond--------------------------------------- */
+  #timer-container {
+    position: relative;
+  }
+  
+  #timer-display {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aqua;
+    text-shadow: 2px 2px 15px black;
+    padding: 20px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 140px;
+    text-shadow: 2px 2px 19px black;  
+  }
+  
   .pond_container {
     display: flex;
     flex-direction: column;
@@ -260,9 +277,7 @@ a.navbar-brand {
     justify-content: center;
     height: 80vh;
   }
-  
-  .p_button1,
-  .p_button2 {
+  #start-button,#reset-button{
     padding: 10px 20px;
     background-color: aqua;
     width: 400px;
@@ -270,11 +285,18 @@ a.navbar-brand {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 10px;
+    margin-top: 130px;
     transition: background-color .15s;
     box-shadow: 2px 2px 5px black;
   }
-  
+  #start-button:hover{
+    background-color: #F97E73;
+    color:white;
+  }
+  #reset-button:hover{
+    background-color: #F97E73;
+    color:white;
+  }
   .p_text{
     font-size: xx-large;
     color: aqua;
@@ -295,16 +317,4 @@ a.navbar-brand {
 
 
 
-  /* update pond  */
-  .timer-container {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #f5f5f5;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 36px;
-}
 

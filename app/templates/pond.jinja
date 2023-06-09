@@ -44,15 +44,51 @@
         <h2 class="p_text">Before you start your study session cast your reel. This will start your study timer and
             once you get a bit you will be notified!</h2>
      
-        <form method="POST" action="{{ url_for('main.pond') }}">
-            <input type="hidden" name="action" value="start_timer">
-            <input type="hidden" name="work_time" value="{{ work_timer }}">
-            <input type="hidden" name="rest_time" value="{{ rest_timer }}">
-            <button class="p_button1" type="submit">Cast~Line</button>
-        </form>
+        
+    {% block content %}
+  <div id="timer-container">
+    <div id="timer-display">25:00</div>
+    <button id="start-button">Start</button>
+    <button id="reset-button">Reset</button>
+  </div>
 
+  <script>
 
-    </div>
+    document.addEventListener('DOMContentLoaded', function() {
+      var timerDisplay = document.getElementById('timer-display');
+      var startButton = document.getElementById('start-button');
+      var resetButton = document.getElementById('reset-button');
+
+      var interval;
+      var secondsLeft = 1500;
+
+      function startTimer() {
+        interval = setInterval(function() {
+          var minutes = Math.floor(secondsLeft / 60);
+          var seconds = secondsLeft % 60;
+          timerDisplay.textContent = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+
+          if (secondsLeft > 0) {
+            secondsLeft--;
+          } else {
+            clearInterval(interval);
+      
+          }
+        }, 1000);
+      }
+
+      function resetTimer() {
+        clearInterval(interval);
+        secondsLeft = 1500; 
+        timerDisplay.textContent = '25:00';
+      }
+
+      startButton.addEventListener('click', startTimer);
+      resetButton.addEventListener('click', resetTimer);
+    });
+  </script>
+{% endblock %}
+
 </body>
 
 </html>
