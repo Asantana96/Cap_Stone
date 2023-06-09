@@ -3,10 +3,10 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
+from .fish_api import fish_api_bp
 app = Flask(__name__)
 app.config.from_object(Config)
-
+app.register_blueprint(fish_api_bp)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
