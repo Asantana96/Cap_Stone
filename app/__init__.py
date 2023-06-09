@@ -12,10 +12,14 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 
 # Import your models
-from app import models
+from app.models import Fish
 
+# Import your blueprints
 from app.blueprints.auth import bp as auth_bp
 from app.blueprints.main import bp as main_bp
 
+# Register your blueprints
 app.register_blueprint(auth_bp)
-app.register_blueprint(main_bp)
+app.register_blueprint(main_bp) 
+
+# Rest of your code...

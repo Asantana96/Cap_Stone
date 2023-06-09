@@ -43,26 +43,16 @@
         <h1 class="pond_text">WELCOME TO THE POND</h1>
         <h2 class="p_text">Before you start your study session cast your reel. This will start your study timer and
             once you get a bit you will be notified!</h2>
-        <div class="timer-container">
-            <div class="timer-bar"></div>
-            <div id="timer">{{ timer }}</div>
-        </div>
-
+     
         <form method="POST" action="{{ url_for('main.pond') }}">
             <input type="hidden" name="action" value="start_timer">
-            <input type="hidden" name="work_time" value="1500">
-            <input type="hidden" name="rest_time" value="300">
+            <input type="hidden" name="work_time" value="{{ work_timer }}">
+            <input type="hidden" name="rest_time" value="{{ rest_timer }}">
             <button class="p_button1" type="submit">Cast~Line</button>
         </form>
 
-        {% if timer_running %}
-        <form method="POST" action="{{ url_for('main.pond') }}">
-            <input type="hidden" name="action" value="stop_timer">
-            <button class="p_button2" type="submit">Reel~In</button>
-        </form>
-        {% endif %}
+
     </div>
 </body>
-s
-</html>
 
+</html>
